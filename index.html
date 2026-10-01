@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Computer Ethics Exam</title>
+<style>
+:root{--bg:#f4f6fb;--card:#fff;--tx:#14213d;--mu:#5b6478;--pr:#2f5bea;--pr2:#e8eeff;--ok:#12805c;--okb:#e1f6ee;--bad:#c62f3d;--badb:#fdeaec;--bd:#dde2ee;--sh:0 4px 18px rgba(20,33,61,.08)}
+[data-theme=dark]{--bg:#0d1220;--card:#161d33;--tx:#e8ecf8;--mu:#9aa5c0;--pr:#6b8cff;--pr2:#1e2a52;--ok:#42d6a0;--okb:#10332a;--bad:#ff7482;--badb:#3a1820;--bd:#27314f;--sh:none}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;font:16px/1.55 system-ui,"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--tx);overflow-x:hidden}
+.top{position:sticky;top:0;z-index:5;display:flex;gap:8px;align-items:center;justify-content:space-between;padding:8px 14px;background:var(--card);border-bottom:1px solid var(--bd);flex-wrap:wrap}
+.top b{font-size:15px}.top .btn{min-height:38px;padding:4px 12px}
+.wrap{max-width:1100px;margin:0 auto;padding:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:18px;box-shadow:var(--sh);margin-bottom:14px;animation:in .25s}
+@keyframes in{from{opacity:0;transform:translateY(6px)}}
+h1{margin:.2em 0;line-height:1.25}h1 small{font-size:.6em;color:var(--mu)}h2{font-size:1.2rem;line-height:1.45}h3{margin:1em 0 .4em}
+h4{margin:.9em 0 .2em;color:var(--mu);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}
+p{margin:.4em 0}.mu{color:var(--mu)}.small{font-size:.85rem}
+.btn{min-height:46px;padding:10px 18px;border:0;border-radius:10px;background:var(--pr);color:#fff;font:inherit;font-weight:600;cursor:pointer}
+.btn.g{background:var(--pr2);color:var(--pr)}.btn:disabled{opacity:.45;cursor:not-allowed}
+.nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.nav .btn{flex:1 1 140px}
+.exam{display:grid;grid-template-columns:1fr 250px;gap:14px;align-items:start}
+@media(max-width:820px){.exam{grid-template-columns:1fr}}
+.bar{height:8px;background:var(--pr2);border-radius:9px;overflow:hidden;margin:10px 0}.bar i{display:block;height:100%;background:var(--pr);transition:width .3s}
+.qh{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.opt{display:flex;gap:12px;align-items:center;width:100%;text-align:start;margin:9px 0;padding:12px 14px;min-height:52px;border:2px solid var(--bd);border-radius:12px;background:transparent;color:inherit;font:inherit;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--pr)}.opt.sel{border-color:var(--pr);background:var(--pr2)}
+.opt span{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--pr2);color:var(--pr);font-weight:700}
+.opt.sel span{background:var(--pr);color:#fff}.opt em{font-style:normal}
+.qn{display:grid;grid-template-columns:repeat(auto-fill,minmax(42px,1fr));gap:6px;margin:10px 0}
+.qn button{height:42px;border:1px solid var(--bd);border-radius:9px;background:transparent;color:inherit;font:inherit;cursor:pointer}
+.qn .ans{background:var(--ok);border-color:var(--ok);color:var(--card)}.qn .cur{outline:3px solid var(--pr);outline-offset:1px;font-weight:700}
+.t{font-weight:700;font-variant-numeric:tabular-nums;margin-inline-end:8px}.t.warn{color:var(--bad)}
+.st{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:12px 0}
+.st div{padding:12px;border-radius:12px;background:var(--pr2);color:var(--mu);font-size:.85rem}.st b{display:block;font-size:1.35rem;color:var(--tx)}
+.rv{border-inline-start:5px solid var(--bd)}.rv.ok{border-color:var(--ok)}.rv.bad{border-color:var(--bad)}
+.tag{display:inline-block;padding:1px 9px;border-radius:99px;background:var(--pr2);color:var(--pr);font-size:.78rem;margin-inline-end:4px}
+.note{padding:10px 14px;border-radius:10px;background:var(--pr2);margin:10px 0}.note.ok{background:var(--okb)}.note.warn{background:var(--badb)}
+label{display:block;margin:10px 0;font-weight:600}input,select{width:100%;min-height:46px;padding:10px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:inherit;font:inherit}
+.err{color:var(--bad);font-size:.85rem;min-height:1.2em;font-weight:400}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:grid;place-items:center;padding:14px;z-index:9}.modal[hidden],[hidden]{display:none!important}
+.modal .card{max-width:440px;width:100%;margin:0}
+#toast{position:fixed;top:64px;left:50%;transform:translateX(-50%);max-width:92%;background:var(--bad);color:#fff;padding:10px 18px;border-radius:10px;z-index:10;font-weight:600}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.85rem}th,td{padding:6px 8px;border-bottom:1px solid var(--bd);white-space:nowrap;text-align:start}th{cursor:pointer;color:var(--pr)}
+ul{padding-inline-start:20px}
+@media print{.top,.nav,.noprint{display:none!important}body{background:#fff;color:#000}.card{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="top"><b>🎓 Computer Ethics Exam · امتحان أخلاقيات الحاسب</b><div><span id="timer" class="t" hidden></span><button class="btn g" onclick="theme()" aria-label="Theme">◐</button> <span id="tlink"></span></div></div>
+<div id="toast" hidden></div>
+<main class="wrap" id="app"></main>
+<div class="modal" id="modal" hidden><div class="card" id="mbox"></div></div>
+
+<script>
+/* ================= CONFIGURATION ================= */
+const EXAM_DURATION_MINUTES = 30;                       // exam length
+const EXAM_VERSION = "ethics-lecture1-lecture2-slide9-v1";
+const RESULT_WEBHOOK_URL = "";   // e.g. a Google Apps Script Web App URL (deployed "Anyone"). Receives POST JSON (Content-Type text/plain).
+                                 // Apps Script: function doPost(e){var d=JSON.parse(e.postData.contents);SpreadsheetApp.getActiveSheet().appendRow([d.studentName,d.studentId,d.email,d.group,d.score,d.total,d.percentage,d.submittedAt]);return ContentService.createTextOutput("ok")}
+                                 // Make / Zapier / n8n: use a "Custom webhook" URL. Empty = results stay local + Download Result.
+const ENABLE_TEACHER_MODE = false;                      // true = shows Teacher button (import JSON results, CSV export)
+/* ================================================= */
+
+/* Question format: o[0] is the correct option for MCQ (options are shuffled at runtime and correctness is re-mapped).
+   True/False items (2 options) are not shuffled and use a = index of the correct option. */
+const QUESTION_BANK = [
+{id:"L1-Q001",l:1,t:"Ethics vs Laws",d:"easy",q:"Which statement best distinguishes ethics from laws?",o:["Ethics show society's views of right and wrong, while laws legally mandate what is right or wrong","Ethics are enforced by courts, while laws are only personal opinions","Ethics and laws are the same because both are legally mandated","Ethics apply only to computers, while laws apply to everything else"],e:"Ethics (أخلاقيات) reflect society's views and are not strictly enforced; laws (قوانين) are legally mandated. Misconception: thinking ethics are legally enforced."},
+{id:"L1-Q002",l:1,t:"Computer Ethics",d:"medium",q:"Which set lists common issues of computer ethics named in the lecture?",o:["Privacy concerns, intellectual property rights, and effects on society","Hardware pricing, programming languages, and network speed","Grading policy, textbooks, and the course syllabus","Encryption, firewalls, and cloud storage"],e:"Computer ethics = moral standards governing the use of hardware AND software (أخلاقيات الحاسب). Technical tools are not the ethical issues listed."},
+{id:"L1-Q003",l:1,t:"Hacking",d:"easy",q:"A person gets past the security levels of a network and gains unauthorised access to other computers. Which term does the lecture use?",o:["Hacking","Data protection","Anonymity","Software licensing"],e:"Hacking = unlawful intrusion into a computer or network (اختراق غير قانوني). The other terms are privacy tools/concepts, not intrusion."},
+{id:"L1-Q004",l:1,t:"Malware",d:"medium",q:"Which statement about malware is correct?",o:["It is malicious software created to impair a computer system; viruses, spyware, worms and trojan horses are common types","It is any intrusion by a person into a network, with or without software","It is software that masks a user's identity in applications","It is software used under a license agreement without owning it"],e:"Malware = برمجيات خبيثة. B describes hacking, C anonymity, D a software license."},
+{id:"L1-Q005",l:1,t:"Malware",d:"medium",q:"A program on an employee's PC quietly gathers data and sends it out, without deleting any files. Which malware type fits best?",o:["Spyware","Virus","Cracking","Hacking"],e:"Spyware collects data from a computer; a virus can delete files. Cracking and hacking are acts, not malware types."},
+{id:"L1-Q006",l:1,t:"Data Protection",d:"hard",q:"How does data protection (information privacy) differ from anonymity?",o:["Data protection safeguards data while balancing privacy rights with business use; anonymity keeps a user's identity masked","Data protection masks a user's identity; anonymity lets businesses use data","Data protection blocks all business use of personal data; anonymity encrypts files","They are two names for the same idea"],e:"حماية البيانات = balance between individual privacy and permitted business use; الإخفاء = identity masked. Data protection does NOT mean blocking all use."},
+{id:"L1-Q007",l:1,t:"Copyright",d:"easy",q:"Sara wrote an original article. Nobody else may publish or distribute it without her permission. Which concept gives her this?",o:["Copyright","Plagiarism","Cracking","Anonymity"],e:"Copyright gives the author proprietary publication, distribution and usage rights (حقوق المؤلف). Plagiarism is the act of copying, not a right."},
+{id:"L1-Q008",l:1,t:"Plagiarism",d:"medium",q:"Which statement correctly contrasts plagiarism and copyright?",o:["Copyright is a right held by the author; plagiarism is copying and publishing someone's work without proper citation","Plagiarism is the author's legal right; copyright is the act of copying","Both mean skipping registration steps when installing software","Plagiarism applies only to software; copyright only to text"],e:"Plagiarism (انتحال) = passing off another's work as your own. Copyright is the author's protection, not the offence."},
+{id:"L1-Q009",l:1,t:"Cracking",d:"medium",q:"Someone uses a tool to skip the registration and authentication steps when installing paid software. Which concept is this?",o:["Cracking","Hacking","Software license","Plagiarism"],e:"Cracking (كسر الحماية) = getting past a system's security features, e.g. skipping registration/authentication. A license is the legal permission it avoids."},
+{id:"L1-Q010",l:1,t:"Software License",d:"hard",q:"A company buys a license for design software. What is true about ownership?",o:["Ownership stays with the original copyright owner; the company only gets the right to use it under the agreement","Ownership transfers to the company at purchase","The company may redistribute it freely as its own work","The license removes the original copyright"],e:"A license (ترخيص) grants use under an agreement; it never transfers ownership. Thinking 'bought = owned' is the common mistake."},
+{id:"L1-Q011",l:1,t:"Jobs & Health",d:"medium",q:"Why does the lecture say turning multi-step tasks into 'one click' may be unethical?",o:["It may limit the skills of employees","It increases greenhouse gas emissions","It makes employees sick from sitting","It violates the software authors' copyright"],e:"Jobs: some were abolished, others simplified; simplification can limit employee skills. B is environment, C is health."},
+{id:"L1-Q012",l:1,t:"Jobs & Health",d:"easy",q:"Office workers report getting sick from constant sitting, staring at screens and typing. Which effect on society is this?",o:["Health and safety","Environmental impact","Job loss","Social impact"],e:"Health and safety concerns (الصحة والسلامة) come from sitting, screen staring and keyboard/mouse use."},
+{id:"L1-Q013",l:1,t:"Environment",d:"medium",q:"According to the lecture, why do computers affect the environment, and what helps?",o:["More computer time raises energy use and greenhouse gas emissions; limiting use, sleep mode and Energy Star computers help","Computers pollute only when manufactured; use does not matter","Only businesses cause emissions, so individuals need not change habits","Emissions fall when computers stay on all day"],e:"Energy usage ↑ → greenhouse gases ↑ (الأثر البيئي). Turning off, sleep mode and Energy Star labels save energy."},
+{id:"L1-Q014",l:1,t:"Social Impact",d:"hard",q:"Which pair gives ONE positive and ONE negative effect of computer gaming per the lecture?",o:["Stress relief / isolation from the real world","Improved strategic thinking / improved hand-eye coordination","Addiction / exposure to violence","Stress relief / better government services"],e:"Positive: hand-eye coordination, stress relief, strategic thinking. Negative: addiction, isolation, violence. B is both positive, C both negative, D is not gaming."},
+{id:"L1-Q015",l:1,t:"Social Impact",d:"medium",q:"Which correctly describes computers' role in government and in business?",o:["Government: advanced databases hold and analyse huge citizen data to improve services; business: automating processes, reports and analysis","Government: automating business reports; business: holding citizen databases","Both use computers only for social media","Government gains only gaming benefits; business loses all jobs"],e:"Government → large databases to improve services; businesses → automation of processes, reports, analysis. B swaps the roles."},
+{id:"L1-Q016",l:1,t:"Course Overview",d:"easy",q:"What is the grading policy stated in the course introduction?",o:["Midterm 30%, Report 10%, Final 60%","Midterm 40%, Report 10%, Final 50%","Midterm 30%, Report 20%, Final 50%","Midterm 20%, Report 20%, Final 60%"],e:"Grading: Midterm 30% + Report 10% + Final 60% = 100%."},
+{id:"L1-Q017",l:1,t:"Course Overview",d:"medium",q:"True or False: Ethical hackers (penetration testers) are a brand-new profession that did not exist before the recent rise in cybercrime.",o:["True","False"],a:1,e:"False. They have been around a long time; cybercrime and regulations over the last decade made them MORE POPULAR, not newly invented."},
+{id:"L2-Q001",l:2,t:"Ethical Hackers",d:"easy",q:"What mainly distinguishes an ethical hacker from a malicious hacker?",o:["They use the same skills and tactics, but with the system owner's permission","They use different, harmless tools","They only use passive methods","They are never employed or contracted"],e:"Ethical hackers (قراصنة أخلاقيون) attack with permission from the owner, under contract or employment."},
+{id:"L2-Q002",l:2,t:"Ethical Hackers",d:"medium",q:"A tester's contract lists some systems as off-limits, yet the tester attacks one of them. Why is this a problem?",o:["Contracts define what is off-limits; acting outside them removes the permission that makes the work ethical","Ethical hackers may attack any system once hired","Contracts only apply to black-hat hackers","Off-limits lists apply only to in-house teams"],e:"Permission is bounded by the contract (العقد). Being hired does not mean unlimited access."},
+{id:"L2-Q003",l:2,t:"Hacker Types",d:"easy",q:"Which hacker has limited or no training and uses only basic tools, perhaps without understanding them?",o:["Script kiddie","White-hat hacker","Gray-hat hacker","Suicide hacker"],e:"Script kiddies (مبتدئون) rely on basic tools without real understanding."},
+{id:"L2-Q004",l:2,t:"Hacker Types",d:"medium",q:"A former criminal hacker decides to reform and join the good side, but is still not fully trusted. Which type is this?",o:["Gray-hat hacker","White-hat hacker","Black-hat hacker","Script kiddie"],e:"Gray-hat hackers straddle the line and have chosen to reform. White-hats are the good guys with a no-harm code."},
+{id:"L2-Q005",l:2,t:"Hacker Types",d:"hard",q:"An attacker loudly knocks out a target to prove a point and does not care about being caught or going to prison. Which type fits best?",o:["Suicide hacker","Black-hat hacker","Script kiddie","Gray-hat hacker"],e:"Suicide hackers are not stealthy and ignore consequences. Black-hats are criminals who may or may not have an agenda — they are not defined by indifference to capture."},
+{id:"L2-Q006",l:2,t:"Code of Conduct",d:"medium",q:"True or False: An ethical hacker may use software obtained illegally if it speeds up the test.",o:["True","False"],a:1,e:"False. The code says never knowingly use software or processes obtained or retained illegally or unethically."},
+{id:"L2-Q007",l:2,t:"Code of Conduct",d:"hard",q:"While testing, an ethical hacker finds a serious danger to the public. Which duty applies?",o:["Disclose the danger to appropriate persons or authorities","Keep it secret, since all information gained is confidential","Ignore it because it is outside the contract","Publish it in a hacker community"],e:"Confidentiality is a duty, but the code also requires disclosing potential dangers to appropriate persons/authorities. Public forums would break the code."},
+{id:"L2-Q008",l:2,t:"Code of Conduct",d:"medium",q:"Which behaviour would VIOLATE the code of conduct?",o:["Associating with a black-hat community","Ensuring all penetration tests are authorized and legal","Protecting others' IP by relying on your own efforts","Keeping confidential information private"],e:"The code forbids association with malicious hackers or any black-hat community. The other three are required behaviours."},
+{id:"L2-Q009",l:2,t:"Hacking Language",d:"medium",q:"Which statement correctly contrasts a vulnerability and an exploit?",o:["A vulnerability is a weakness usable as an entry point; an exploit is a defined way to breach security","A vulnerability is a defined way to breach security; an exploit is a weakness","Both mean a potential violation of security","A vulnerability is unknown to developers; an exploit is always known"],e:"Vulnerability (نقطة ضعف) = weakness; Exploit = clearly defined way to breach. 'Unknown to developers' describes a zero day."},
+{id:"L2-Q010",l:2,t:"Hacking Language",d:"hard",q:"A flaw in a product is unknown to its developers and has not been addressed. Which term describes it?",o:["Zero day","Hack value","Threat","Target of evaluation"],e:"Zero day = threat or vulnerability unknown to developers and unaddressed. A threat is only a potential violation of security."},
+{id:"L2-Q011",l:2,t:"Hacking Language",d:"medium",q:"Which pair of terms is matched correctly: (1) a system being evaluated for vulnerabilities, (2) a target attracting above-average attacker attention?",o:["(1) Target of evaluation; (2) Hack value","(1) Hack value; (2) Target of evaluation","(1) Exploit; (2) Threat","(1) Threat; (2) Zero day"],e:"TOE = system evaluated for vulnerabilities; Hack value = attractiveness to attackers."},
+{id:"L2-Q012",l:2,t:"Hacking Language",d:"hard",q:"An attacker gains a foothold, uses those results for a second attack, then builds a third on the second. What is this called?",o:["Daisy chaining","Enumeration","Zero day","Footprinting"],e:"Daisy chaining = several attacks in sequence, each building on the previous result. Enumeration is an information-gathering phase."},
+{id:"L2-Q013",l:2,t:"Hacking Steps",d:"medium",q:"Which is the correct order of the first four hacking steps?",o:["Footprinting → Scanning → Enumeration → System hacking","Scanning → Footprinting → Enumeration → System hacking","Enumeration → Scanning → Footprinting → System hacking","Footprinting → Enumeration → Scanning → System hacking"],e:"Passive information gathering first, then scanning acts on it, enumeration extracts detail, and only then system hacking."},
+{id:"L2-Q014",l:2,t:"Hacking Steps",d:"hard",q:"After scanning, a tester extracts usernames, groups, banner settings and auditing information. Which phase is this?",o:["Enumeration","Footprinting","Scanning","System hacking"],e:"Enumeration extracts much more detailed information from what scanning uncovered. Footprinting is passive (Whois, Google, job boards)."}
+];
+
+const ALT_BANK = [
+{t:"Ethics vs Laws",q:"True or False: Following ethics is legally mandated in the same way as following laws.",o:["True","False"],a:1,e:"False. Laws legally mandate right/wrong; ethics are society's views and not strictly enforced."},
+{t:"Data Protection",q:"True or False: Data protection means stopping businesses from using personal data at all.",o:["True","False"],a:1,e:"False. It balances individual privacy rights with authorised business use."},
+{t:"Copyright",q:"Whose permission is needed before an author's work is employed or disseminated?",o:["The author's","Any website owner's","The reader's","A software vendor's"],e:"Copyright keeps publication, distribution and usage rights with the author."},
+{t:"Plagiarism",q:"A student publishes a blogger's article under their own name with no citation. What is this?",o:["Plagiarism","Anonymity","Cracking","Data protection"],e:"Copying and publishing another's work without proper citation = plagiarism."},
+{t:"Cracking",q:"Which act is cracking?",o:["Getting past security features, e.g. skipping registration when installing software","Using software within its license terms","Quoting an author with citation","Masking identity in an application"],e:"Cracking = breaking into a system by bypassing its security features."},
+{t:"Software License",q:"Under a software license, what does the user receive?",o:["The right to use the material under the agreement; the owner keeps ownership","Full ownership of the software","The right to claim authorship","Freedom from the agreement terms"],e:"Licenses grant use only; ownership remains with the copyright owner."},
+{t:"Environment",q:"Which habit does the lecture suggest to save energy?",o:["Sleep mode or turning computers off when idle, and buying Energy Star models","Leaving computers on at all times","Increasing daily computer time","Avoiding efficient models"],e:"Limit computer time, switch off or sleep when idle, buy Energy Star."},
+{t:"Social Impact",q:"Which is a NEGATIVE effect of computer gaming per the lecture?",o:["Isolation from the real world","Stress relief","Improved hand-eye coordination","Improved strategic thinking"],e:"Negatives: addiction, isolation, exposure to violence."},
+{t:"Hacker Types",q:"Which hacker thinks like the attacker but works for the good guys under a no-harm code of ethics?",o:["White-hat (pen tester)","Black-hat","Suicide hacker","Script kiddie"],e:"White-hat hackers = ethical hackers / penetration testers."},
+{t:"Code of Conduct",q:"True or False: A pen tester may belong to a black-hat community as long as they never attack anyone.",o:["True","False"],a:1,e:"False. The code forbids association with black-hat communities."},
+{t:"Hacking Language",q:"Which term means a weakness that can be used as an entry point into an environment?",o:["Vulnerability","Hack value","Daisy chaining","Target of evaluation"],e:"Vulnerability = weakness in a system that can be attacked."},
+{t:"Hacking Steps",q:"Which phase mainly uses passive methods such as Whois queries and Google searches?",o:["Footprinting","Scanning","Enumeration","System hacking"],e:"Footprinting gathers information passively before active phases."}
+];
+
+const CONCEPTS = {
+"Ethics vs Laws":[1,"Ethics = standards reflecting society's views of right and wrong (not strictly enforced). Laws legally mandate right/wrong. الأخلاقيات رأي المجتمع، أما القانون فملزم."],
+"Computer Ethics":[1,"Moral standards governing use of computer hardware and software; common issues: privacy, intellectual property rights, effects on society. أخلاقيات استخدام الحاسب."],
+"Hacking":[1,"Unlawful intrusion into a computer or network, gaining unauthorised access. اختراق غير مشروع."],
+"Malware":[1,"Malicious software that impairs a system: viruses (can delete files), spyware (collects data), worms, trojan horses. البرمجيات الخبيثة."],
+"Data Protection":[1,"Data protection (information privacy) safeguards data, balancing privacy rights with business use. Anonymity keeps a user's identity masked. حماية البيانات ≠ إخفاء الهوية."],
+"Copyright":[1,"Intellectual property giving the author publication, distribution and usage rights; others need permission. حقوق المؤلف."],
+"Plagiarism":[1,"Copying and publishing another's work without proper citation, as if it were yours. الانتحال."],
+"Cracking":[1,"Breaking in by getting past security features, e.g. skipping registration/authentication when installing software. كسر الحماية."],
+"Software License":[1,"Permission to use digital material under an agreement; ownership stays with the copyright owner. الترخيص لا ينقل الملكية."],
+"Jobs & Health":[1,"Computers abolished some jobs and simplified others (may limit skills); sitting, screens and typing raise health and safety concerns. الوظائف والصحة."],
+"Environment":[1,"More computer use → more energy → more greenhouse gases. Save energy: limit use, turn off/sleep, buy Energy Star. الأثر البيئي."],
+"Social Impact":[1,"Social media; gaming (+ hand-eye coordination, stress relief, strategy; − addiction, isolation, violence); government databases improve services; businesses automate processes, reports, analysis."],
+"Course Overview":[1,"Course covers becoming an ethical hacker and its responsibilities; pen testers grew popular due to cybercrime and regulations. Grading: Midterm 30%, Report 10%, Final 60%. Join Teams with faculty email, not as a guest."],
+"Ethical Hackers":[2,"Employed by contract or directly to test an organization's security, using hacker skills WITH the owner's permission; contracts define what is off-limits. قراصنة أخلاقيون بإذن المالك."],
+"Hacker Types":[2,"Script kiddies (basic tools, little understanding); White-hat (ethical/pen testers, no-harm code); Gray-hat (reformed, not fully trusted); Black-hat (criminal side); Suicide hackers (loud attacks, don't fear prison)."],
+"Code of Conduct":[2,"Keep information confidential; protect others' IP; disclose dangers to appropriate authorities; no illegal software; no deceptive finances; no black-hat ties; keep tests authorized and legal; no misuse of certificates; no law violations or convictions."],
+"Hacking Language":[2,"Hack value, Target of Evaluation (TOE), Attack, Exploit, Zero day, Security, Threat (potential violation), Vulnerability (weakness/entry point), Daisy chaining (attacks in sequence). مصطلحات الاختراق."],
+"Hacking Steps":[2,"Footprinting (passive info gathering) → Scanning (act on that info) → Enumeration (usernames, groups, banners, auditing info) → System hacking (plan and execute the attack). خطوات الاختراق."]
+};
+
+/* ================= LOGIC ================= */
+const $=s=>document.querySelector(s),app=$('#app'),T=$('#timer'),KEY='examResult:'+EXAM_VERSION;
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const fmt=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+const QB={};QUESTION_BANK.forEach(q=>QB[q.id]=q);
+let S={info:{},qs:[],ans:[],cur:0,w:{},done:false},R=null,M=null,TR=[],TS={k:'percentage',d:-1};
+function prep(bank){return shuffle(bank).map(q=>{const tf=q.o.length==2,idx=q.o.map((_,i)=>i),ord=tf?idx:shuffle(idx);return{...q,opts:ord.map(i=>q.o[i]),correct:ord.indexOf(q.a||0)}})}
+function load(){try{return JSON.parse(localStorage.getItem(KEY))}catch(e){return null}}
+function save(r){try{localStorage.setItem(KEY,JSON.stringify(r))}catch(e){}}
+function toast(m){const t=$('#toast');t.textContent=m;t.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(()=>t.hidden=true,6000)}
+function modal(h){$('#modal').hidden=!h;if(h)$('#mbox').innerHTML=h}
+function theme(){const d=document.documentElement;d.dataset.theme=d.dataset.theme=='dark'?'light':'dark'}
+document.documentElement.dataset.theme=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+if(ENABLE_TEACHER_MODE)$('#tlink').innerHTML='<button class="btn g" onclick="viewTeacher()">Teacher</button>';
+function dl(n,t,m){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:m+';charset=utf-8'}));a.download=n;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),999)}
+
+/* ---- Welcome + student info ---- */
+const F=(id,l,t='text')=>`<label>${l}<input id="${id}" type="${t}" autocomplete="off"><div class="err" id="e-${id}"></div></label>`;
+function viewInfo(){const sv=load();
+app.innerHTML=`<div class="card"><h1>Welcome · مرحباً<br><small>Computer Ethics — Lecture 1 &amp; Lecture 2 (up to Slide 9)</small></h1>
+<p class="mu">${QUESTION_BANK.length} questions · ${EXAM_DURATION_MINUTES} minutes · ${QUESTION_BANK.length} سؤالاً · ${EXAM_DURATION_MINUTES} دقيقة</p>
+${sv?`<div class="note warn">An attempt has already been submitted in this browser (one attempt per browser). · تم تسليم محاولة من قبل في هذا المتصفح.<div class="nav"><button class="btn" onclick="viewResult(load())">View saved result · عرض النتيجة</button></div></div>`:
+`<h3>Student Information · بيانات الطالب</h3>${F('name','Full Name * · الاسم الكامل')}${F('sid','Student ID * · الرقم الجامعي')}${F('mail','Email * · البريد الإلكتروني','email')}${F('grp','Group / Section · المجموعة (optional)')}<button class="btn" onclick="toInstr()">Continue · متابعة</button>`}</div>`}
+function toInstr(){const v=k=>$('#'+k).value.trim(),I={name:v('name'),id:v('sid'),email:v('mail'),group:v('grp')};
+const E={name:/\p{L}{2,}/u.test(I.name)&&I.name.length>=3?'':'Enter your full name · أدخل الاسم الكامل',sid:/^[A-Za-z0-9\-_.]{3,20}$/.test(I.id)?'':'3–20 letters/digits · رقم غير صالح',mail:/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(I.email)?'':'Enter a valid email · بريد غير صالح'};
+['name','sid','mail'].forEach(k=>$('#e-'+k).textContent=E[k]);if(E.name||E.sid||E.mail)return;S.info=I;viewInstr()}
+function viewInstr(){app.innerHTML=`<div class="card"><h1>Instructions · التعليمات</h1><ul>
+<li>${QUESTION_BANK.length} questions, one at a time. Time limit: <b>${EXAM_DURATION_MINUTES} minutes</b>; the exam auto-submits at zero. (الامتحان يُسلَّم تلقائياً عند انتهاء الوقت)</li>
+<li>Warnings appear at 10, 5 and 1 minute(s) remaining.</li>
+<li>You can go back and change answers until you submit. No score or answers are shown during the exam.</li>
+<li>Question and option order are random for each student.</li>
+<li>Do not refresh or close the page; leaving will show a warning. After submission you cannot change answers.</li></ul>
+<p class="note">Integrity note: a browser-only exam cannot provide perfect anti-cheating protection; it relies on honesty. · هذا الامتحان يعتمد على النزاهة.</p>
+<div class="nav"><button class="btn g" onclick="viewInfo()">← Back</button><button class="btn" onclick="start()">Start Exam · بدء الامتحان</button></div></div>`}
+
+/* ---- Exam ---- */
+function start(){S.qs=prep(QUESTION_BANK);S.ans=S.qs.map(()=>null);S.cur=0;S.done=false;S.w={};S.start=Date.now();S.end=S.start+EXAM_DURATION_MINUTES*6e4;
+T.hidden=false;S.iv=setInterval(tick,500);window.onbeforeunload=e=>{e.preventDefault();e.returnValue=''};tick();viewExam()}
+function tick(){const l=Math.max(0,Math.ceil((S.end-Date.now())/1000));T.textContent='⏱ '+fmt(l);T.className=l<=300?'t warn':'t';
+[600,300,60].forEach(w=>{if(l<=w&&l>0&&w<EXAM_DURATION_MINUTES*60&&!S.w[w]){S.w[w]=1;toast(`⚠ ${w/60} minute${w>60?'s':''} remaining · متبقي ${w/60} دقيقة`)}});if(l<=0)finish('Time expired')}
+function viewExam(){const n=S.qs.length,q=S.qs[S.cur],a=S.ans[S.cur],k=S.ans.filter(x=>x!=null).length;
+app.innerHTML=`<div class="exam"><section class="card"><div class="qh"><b>Question ${S.cur+1} of ${n}</b><span class="mu">Question ${S.cur+1} / ${n} · ${k} answered</span></div><div class="bar"><i style="width:${(S.cur+1)/n*100}%"></i></div>
+<h2 dir="auto">${esc(q.q)}</h2><div role="radiogroup">${q.opts.map((o,i)=>`<button class="opt${a===i?' sel':''}" role="radio" aria-checked="${a===i}" onclick="pick(${i})"><span>${'ABCD'[i]}</span><em dir="auto">${esc(o)}</em></button>`).join('')}</div>
+<div class="nav"><button class="btn g" onclick="go(${S.cur-1})" ${S.cur?'':'disabled'}>← Previous · السابق</button><button class="btn g" onclick="go(${S.cur+1})" ${S.cur<n-1?'':'disabled'}>Next · التالي →</button><button class="btn" onclick="confirmSubmit()">Submit Exam · تسليم</button></div></section>
+<aside class="card"><b>Navigator · التنقل</b><div class="qn">${S.qs.map((_,i)=>`<button class="${i==S.cur?'cur ':''}${S.ans[i]!=null?'ans':''}" onclick="go(${i})">${i+1}</button>`).join('')}</div><p class="mu small">Green = answered · Outline = current · Plain = unanswered</p></aside></div>`}
+function pick(i){if(S.done)return;S.ans[S.cur]=i;viewExam()}
+function go(i){if(S.done||i<0||i>=S.qs.length)return;S.cur=i;viewExam();scrollTo(0,0)}
+function confirmSubmit(){if(S.done)return;const a=S.ans.filter(x=>x!=null).length;
+modal(`<h3>Are you sure you want to submit?<br>هل أنت متأكد من التسليم؟</h3><p>You answered <b>${a} / ${S.qs.length}</b> questions.</p><p>You cannot change your answers after submission.</p><div class="nav"><button class="btn g" onclick="modal()">Cancel</button><button class="btn" onclick="this.disabled=true;finish('Student submitted')">Submit</button></div>`)}
+
+/* ---- Grading ---- */
+function build(reason){const t=Date.now(),n=S.qs.length;let c=0,u=0;
+const answers=S.qs.map((q,i)=>{const s=S.ans[i];if(s==null)u++;else if(s===q.correct)c++;
+return{no:i+1,id:q.id,lecture:q.l,topic:q.t,difficulty:q.d,question:q.q,options:q.opts,selectedIndex:s,selectedAnswer:s==null?null:q.opts[s],correctIndex:q.correct,correctAnswer:q.opts[q.correct],isCorrect:s===q.correct}});
+const sec=Math.max(0,Math.round((Math.min(t,S.end)-S.start)/1000));
+return{examVersion:EXAM_VERSION,studentName:S.info.name,studentId:S.info.id,email:S.info.email,group:S.info.group,score:c,total:n,percentage:+(c/n*100).toFixed(2),correct:c,incorrect:n-c-u,unanswered:u,timeTaken:fmt(sec),timeTakenSeconds:sec,startedAt:new Date(S.start).toISOString(),submittedAt:new Date(t).toISOString(),submissionReason:reason,webhookStatus:'',answers}}
+function finish(reason){if(S.done)return;S.done=true;clearInterval(S.iv);window.onbeforeunload=null;modal();const r=build(reason);save(r);viewResult(r);send(r)}
+async function send(r){if(!RESULT_WEBHOOK_URL){r.webhookStatus='not configured';save(r);return wh(r)}
+r.webhookStatus='sending';wh(r);
+try{const x=await fetch(RESULT_WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(r)});r.webhookStatus=(x.ok?'sent':'failed')+' (HTTP '+x.status+')'}catch(e){r.webhookStatus='failed ('+e.message+')'}
+save(r);wh(r)}
+function wh(r){const e=$('#wh');if(!e)return;const s=r.webhookStatus||'';e.className='note noprint '+(s.startsWith('sent')?'ok':'warn');
+e.innerHTML=s=='not configured'?'<b>Result saved locally.</b><br>Remote submission is not configured. · لم يتم الإرسال عن بعد، يرجى تحميل النتيجة.':s=='sending'?'Sending result… · جاري الإرسال':s.startsWith('sent')?'✓ Result sent to server '+esc(s):'✗ Remote submission '+esc(s)+'. Result is saved locally — please use Download Result.'}
+function areas(r){const m={};r.answers.forEach(a=>{m[a.topic]=m[a.topic]||{ok:0,bad:0};a.isCorrect?m[a.topic].ok++:m[a.topic].bad++});return{m,weak:Object.keys(m).filter(t=>m[t].bad),strong:Object.keys(m).filter(t=>!m[t].bad)}}
+
+/* ---- Result + review ---- */
+function viewResult(r){R=r;T.hidden=true;const A=areas(r);
+app.innerHTML=`<div class="card"><p class="mu small">${esc(r.examVersion)}</p><h1>EXAM COMPLETED<br><small>تم إنهاء الامتحان</small></h1>
+<p>Student: <b>${esc(r.studentName)}</b> · Student ID: <b>${esc(r.studentId)}</b></p>
+<div class="st"><div>Score<b>${r.score} / ${r.total}</b></div><div>Percentage<b>${r.percentage.toFixed(2)}%</b></div><div>Correct<b>${r.correct}</b></div><div>Incorrect<b>${r.incorrect}</b></div><div>Unanswered<b>${r.unanswered}</b></div><div>Time Taken<b>${esc(r.timeTaken)}</b></div></div>
+<p class="mu small">Submission reason: ${esc(r.submissionReason)} · Submitted: ${esc(r.submittedAt)}</p><div id="wh"></div>
+<div class="nav noprint"><button class="btn" onclick="dl('result-'+R.studentId+'.json',JSON.stringify(R,null,2),'application/json')">Download Result</button><button class="btn g" onclick="print()">Print Result</button><button class="btn g" onclick="retry()">Retry Weak Areas</button><button class="btn g" onclick="viewConcepts()">Review Lecture Concepts</button></div></div>
+<div class="card"><h2>Strong Areas · نقاط القوة</h2><p>${A.strong.map(t=>`<span class="tag">${esc(t)}</span>`).join('')||'<span class="mu">None yet</span>'}</p></div>
+<div class="card"><h2>Weak Areas · نقاط الضعف</h2>${A.weak.length?A.weak.map((t,i)=>`<div class="rv card"><b>${i+1}. ${esc(t)}</b> <span class="mu small">(${A.m[t].bad} missed / ${A.m[t].ok+A.m[t].bad})</span><p dir="auto">${esc(CONCEPTS[t]?CONCEPTS[t][1]:'')}</p></div>`).join(''):'<p>🎉 No weak areas — excellent! · لا توجد نقاط ضعف</p>'}</div>
+<h2>Detailed Review · المراجعة التفصيلية</h2>
+${r.answers.map(a=>{const q=QB[a.id]||{},st=a.selectedIndex==null?'Unanswered':a.isCorrect?'Correct ✓':'Incorrect ✗';
+return`<div class="card rv ${a.isCorrect?'ok':'bad'}"><b>Q${a.no}</b> <span class="tag">${esc(a.id)}</span><span class="tag">${esc(a.topic)}</span><span class="tag">${esc(a.difficulty)}</span>
+<h4>Question</h4><p dir="auto">${esc(a.question)}</p><h4>Your Answer</h4><p dir="auto">${a.selectedAnswer==null?'— Not answered —':esc(a.selectedAnswer)}</p><h4>Correct Answer</h4><p dir="auto"><b>${esc(a.correctAnswer)}</b></p><h4>Result</h4><p><b>${st}</b></p>
+<h4>Explanation · الشرح</h4><p dir="auto">${esc(q.e||'')}</p>${a.isCorrect?'':`<p class="note warn" dir="auto">${a.selectedAnswer==null?'You left this unanswered.':'Why your choice is wrong: “'+esc(a.selectedAnswer)+'” sounds plausible but does not match the lecture — the correct option is “'+esc(a.correctAnswer)+'”.'}</p>`}</div>`}).join('')}`;
+wh(r)}
+
+/* ---- Retry weak areas (alternative question pool) ---- */
+function retry(){const w=areas(R).weak;M={qs:prep(ALT_BANK.filter(q=>w.includes(q.t))),ans:{},miss:w.filter(t=>!ALT_BANK.some(q=>q.t==t))};viewMini()}
+function viewMini(){app.innerHTML=`<div class="card"><h2>Retry Weak Areas · إعادة المحاولة</h2><p class="mu">Practice mode with new wording and instant feedback. · تدريب بصياغة جديدة</p>
+${M.qs.map((q,i)=>{const a=M.ans[i];return`<div class="card rv ${a==null?'':a===q.correct?'ok':'bad'}"><b>${i+1}. <span class="tag">${esc(q.t)}</span></b><p dir="auto">${esc(q.q)}</p>${q.opts.map((o,j)=>`<button class="opt${a===j?' sel':''}" onclick="mq(${i},${j})" ${a!=null?'disabled':''}><span>${'ABCD'[j]}</span><em dir="auto">${esc(o)}</em></button>`).join('')}${a!=null?`<p class="note ${a===q.correct?'ok':'warn'}" dir="auto">${a===q.correct?'✓ Correct':'✗ Incorrect — correct: '+esc(q.opts[q.correct])}<br>${esc(q.e)}</p>`:''}</div>`}).join('')||'<p class="note ok">No weak areas to practise! · لا توجد نقاط ضعف</p>'}
+${M.miss.length?`<p class="note">No alternative questions for: ${M.miss.map(esc).join(', ')} — see Review Lecture Concepts.</p>`:''}<button class="btn" onclick="viewResult(R)">← Back to result</button></div>`}
+function mq(i,j){M.ans[i]=j;viewMini()}
+
+/* ---- Master concept review ---- */
+function viewConcepts(){app.innerHTML=`<div class="card"><h2>Review Lecture Concepts · مراجعة المفاهيم</h2>${[1,2].map(l=>`<h3>${l==1?'Lecture 1 — Introduction to Ethics and Computer Ethics':'Lecture 2 — Ethical Hackers (through Slide 9)'}</h3>${Object.entries(CONCEPTS).filter(e=>e[1][0]==l).map(e=>`<div class="card rv"><b>${esc(e[0])}</b><p dir="auto">${esc(e[1][1])}</p></div>`).join('')}`).join('')}<button class="btn" onclick="R?viewResult(R):viewInfo()">← Back</button></div>`}
+
+/* ---- Teacher mode ---- */
+const COLS=[['Student Name','studentName'],['Student ID','studentId'],['Email','email'],['Group','group'],['Score','score'],['Total','total'],['Percentage','percentage'],['Correct','correct'],['Incorrect','incorrect'],['Unanswered','unanswered'],['Time Taken','timeTaken'],['Start Time','startedAt'],['Submission Time','submittedAt'],['Submission Reason','submissionReason'],['Exam Version','examVersion']];
+function viewTeacher(){if(!ENABLE_TEACHER_MODE)return;T.hidden=true;
+app.innerHTML=`<div class="card"><h2>Teacher Mode · وضع المعلم</h2><p class="mu">Import the .json result files students downloaded.</p><input type="file" accept=".json" multiple onchange="imp(this.files)">
+<div class="nav"><input id="ts" placeholder="Search name / ID / email / group" oninput="drawT()" style="flex:2 1 200px"><select id="tf" onchange="drawT()" style="flex:1 1 140px"><option value="all">All</option><option value="pass">≥ 50%</option><option value="fail">&lt; 50%</option></select></div>
+<p id="tstat" class="note"></p><div class="nav"><button class="btn" onclick="csv()">Export CSV</button><button class="btn g" onclick="TR=[];drawT()">Clear list</button><button class="btn g" onclick="if(confirm('Delete the local attempt in this browser?')){localStorage.removeItem(KEY);toast('Local attempt cleared')}">Reset local attempt</button><button class="btn g" onclick="viewInfo()">← Exit</button></div></div>
+<div class="card tw"><table><thead><tr>${COLS.map(c=>`<th onclick="srt('${c[1]}')">${c[0]}</th>`).join('')}</tr></thead><tbody id="tb"></tbody></table></div>`;drawT()}
+function srt(k){TS.d=TS.k==k?-TS.d:1;TS.k=k;drawT()}
+function rows(){const q=($('#ts').value||'').toLowerCase(),f=$('#tf').value;return TR.filter(r=>(!q||[r.studentName,r.studentId,r.email,r.group].join(' ').toLowerCase().includes(q))&&(f=='all'||(f=='pass'?r.percentage>=50:r.percentage<50))).sort((a,b)=>(a[TS.k]>b[TS.k]?1:a[TS.k]<b[TS.k]?-1:0)*TS.d)}
+function drawT(){const L=rows(),p=L.map(r=>r.percentage);$('#tstat').innerHTML=L.length?`Students: <b>${L.length}</b> · Average: <b>${(p.reduce((a,b)=>a+b,0)/p.length).toFixed(2)}%</b> · Highest: <b>${Math.max(...p)}%</b> · Lowest: <b>${Math.min(...p)}%</b>`:'No results loaded.';
+$('#tb').innerHTML=L.map(r=>'<tr>'+COLS.map(c=>`<td>${esc(r[c[1]])}</td>`).join('')+'</tr>').join('')}
+async function imp(fs){for(const f of fs){try{const j=JSON.parse(await f.text());(Array.isArray(j)?j:[j]).forEach(r=>{if(r&&r.studentId&&r.score!=null&&!TR.some(x=>x.studentId==r.studentId&&x.submittedAt==r.submittedAt))TR.push(r)})}catch(e){toast('Invalid JSON: '+f.name)}}drawT()}
+function csv(){const q=v=>{v=String(v??'');if(/^[=+\-@]/.test(v))v="'"+v;return'"'+v.replace(/"/g,'""')+'"'};
+dl('results.csv','\ufeff'+[COLS.map(c=>q(c[0])).join(','),...rows().map(r=>COLS.map(c=>q(r[c[1]])).join(','))].join('\n'),'text/csv')}
+
+viewInfo();
+</script>
+</body>
+</html>
